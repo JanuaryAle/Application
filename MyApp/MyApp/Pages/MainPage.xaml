@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MyApp.MainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="220"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackLayout BackgroundColor="#252424" Padding="35, 30">
+
+            <StackLayout Orientation="Horizontal" HeightRequest="30">
+                <Label Text="Выход" FontFamily="{StaticResource Comf}" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" TextColor="White" FontSize="15"/>
+                <Grid>
+                    <ImageButton Source="updateButton.png"  HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" Clicked="Button_Update"/>
+                    <Label Text="Обновить" FontFamily="{StaticResource Comf}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" TextColor="White" FontSize="15" Margin="28,2,0,0"/>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout Spacing="0">
+                <Label Text="Общая сумма:" FontFamily="{StaticResource Comf}" TextColor="White" FontSize="22" HorizontalOptions="Center"/>
+                <Label x:Name="totalValue" TextColor="White" FontSize="30" HorizontalOptions="Center"/>
+            </StackLayout>
+
+            <Grid Margin="-5, -10,-10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Text="За период: " TextColor="White" FontFamily="{StaticResource Comf}" FontSize="17" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
+                <DatePicker x:Name="startDate" MinimumDate="01/01/2017"
+                        TextColor="White" FontSize="17" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1"/>
+                <Label Text="до: " TextColor="White" FontFamily="{StaticResource Comf}" FontSize="17" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Grid.Column="2"/>
+                <DatePicker x:Name="endDate" MinimumDate="01/01/2017" MaximumDate="12/31/2023"
+                        TextColor="White" FontSize="17" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3"/>
+            </Grid>
+
+        </StackLayout>
+
+        <Frame Grid.Row="1" Grid.RowSpan="2" HasShadow="True" CornerRadius="40" Margin="0,-40,0,-40" Padding="0" VerticalOptions="FillAndExpand">
+            <StackLayout Orientation ="Horizontal" Padding="30, 15" VerticalOptions="Start" HorizontalOptions="FillAndExpand" >
+                <Label Text="Мои карты:" FontFamily="{StaticResource Comf}" TextColor="Black" HorizontalOptions="Start" FontSize="22" VerticalOptions="Center"/>
+                <Button Text="Добавить" FontFamily="{StaticResource Comf}" FontSize="12" HeightRequest="40" TextColor="White" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+        </Frame>
+
+        <CarouselView x:Name="carouselView" Grid.Row="1" IsBounceEnabled="False" HorizontalScrollBarVisibility="Always" 
+                   Margin="5,15" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Frame HasShadow="True"
+                           Padding="10"
+                       CornerRadius="5"
+                       Margin="20"              
+                       HorizontalOptions="Center"
+                       VerticalOptions="CenterAndExpand">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="{Binding Picture}" VerticalOptions="Start" Grid.RowSpan="3"/>
+                            <StackLayout Grid.Row="0" Orientation="Horizontal" Margin="75,25">
+                                <Label Text="{Binding Name}" FontFamily="{StaticResource Comf}" FontSize="21" TextColor="White"/>
+                            </StackLayout>
+                            <Label Text="{Binding BankName}" FontFamily="{StaticResource Comf}" FontSize="17"  VerticalOptions="StartAndExpand" Grid.Row="1" Margin="75,-37,75,0" TextColor="White"/>
+                            <Label Text="{Binding Value}" FontSize="30" VerticalOptions="End" HorizontalOptions="EndAndExpand" Grid.Row="2" Margin="0,-35,75,30" TextColor="White"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <Label Grid.Row="2" Margin="40, -17" Text="Все начисления: " FontFamily="{StaticResource Comf}"/>
+
+        <ListView x:Name ="listView"  Grid.Row="2" Margin="50,10"
+                 SelectionMode="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame BackgroundColor="White" CornerRadius="20" BorderColor="Gray" HeightRequest="40" Padding="5" Margin="0,0,0,5" HasShadow="False">
+                            <Grid HeightRequest="100" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="15"/>
+                                </Grid.RowDefinitions>
+
+                                <Label Text="{Binding CardName}" FontFamily="{StaticResource Comf}" TextColor="Black" FontSize="15" VerticalOptions="CenterAndExpand" Margin="20,0"/>
+                                <Label Grid.Row ="1" Text="{Binding Date}" FontFamily="{StaticResource Comf}" TextColor="#757575" FontSize="10" VerticalOptions="CenterAndExpand"  Margin="20,-19,20,0"/>
+                                <Label Grid.Column="1" Grid.RowSpan="2" Text="{Binding Value}" TextColor="Black" FontSize="20" VerticalOptions="Start" HorizontalOptions="End"/>
+
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+</ContentPage>

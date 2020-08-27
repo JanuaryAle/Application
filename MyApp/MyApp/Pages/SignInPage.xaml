@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MyApp.Pages.SignInPage">
+    
+    <Grid VerticalOptions="FillAndExpand">
+
+        <Image Source="bk.png" Aspect="Fill" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+
+        <Label Text="Welcome!" FontFamily="{StaticResource Comf}" HorizontalOptions="Center" TextColor="White" FontSize="27" Padding="0,160,0,0"/>
+
+        <StackLayout x:Name="stackLayout" Padding="50,240,50,0">
+
+            <Entry x:Name ="EntryName" FontFamily="{StaticResource Comf}" TextColor="White" PlaceholderColor="White"></Entry>
+            <Entry x:Name ="EntryPass" FontFamily="{StaticResource Comf}" TextColor="White" PlaceholderColor="White" IsPassword="True"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height ="40"/>
+                    <RowDefinition Height ="40"/>
+                </Grid.RowDefinitions >
+                <ImageButton Source ="forEntry.png" Clicked="Button_Clicked" HorizontalOptions="CenterAndExpand" HeightRequest="100" VerticalOptions="CenterAndExpand" Margin="0,5" Grid.Row="0"/>
+                <Label Text="Login" TextColor ="Black" FontFamily="{StaticResource Comf}" FontSize="15" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Grid.Row="0"/>
+                <ImageButton Source ="forEntry.png" Clicked="Button_Clicked_1"  HorizontalOptions="CenterAndExpand" HeightRequest="100" VerticalOptions="CenterAndExpand" Grid.Row="1" Margin="0,5"/>
+                <Label Text="Don't have an account? Sign up" TextColor ="Black" FontFamily="{StaticResource Comf}"  FontSize="13" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Grid.Row="1" Margin="0,5"/>
+            </Grid>
+            <Label x:Name="label" Text = "Something incorrect, please, try again"  FontFamily="{StaticResource Comf}" TextColor = "Coral" IsVisible = "False" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>
